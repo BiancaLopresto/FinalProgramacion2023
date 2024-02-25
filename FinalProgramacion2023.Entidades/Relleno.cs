@@ -2,7 +2,7 @@
 {
     public enum Relleno
     {
-        Rojo=1,
+        Rojo,
         Azul,
         Verde
     }

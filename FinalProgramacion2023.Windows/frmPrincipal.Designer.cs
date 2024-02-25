@@ -41,8 +41,6 @@
             tsbSalir = new ToolStripButton();
             splitContainer1 = new SplitContainer();
             dgvDatos = new DataGridView();
-            txtCantidad = new TextBox();
-            label1 = new Label();
             colLado = new DataGridViewTextBoxColumn();
             colB = new DataGridViewTextBoxColumn();
             colRelleno = new DataGridViewTextBoxColumn();
@@ -50,6 +48,8 @@
             colArea = new DataGridViewTextBoxColumn();
             colPerimetro = new DataGridViewTextBoxColumn();
             coltipo = new DataGridViewTextBoxColumn();
+            txtCantidad = new TextBox();
+            label1 = new Label();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -152,6 +152,7 @@
             tsbSalir.Size = new Size(36, 51);
             tsbSalir.Text = "Salir";
             tsbSalir.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbSalir.Click += tsbSalir_Click;
             // 
             // splitContainer1
             // 
@@ -185,22 +186,6 @@
             dgvDatos.RowTemplate.Height = 25;
             dgvDatos.Size = new Size(800, 330);
             dgvDatos.TabIndex = 0;
-            // 
-            // txtCantidad
-            // 
-            txtCantidad.Location = new Point(101, 21);
-            txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(100, 23);
-            txtCantidad.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(28, 24);
-            label1.Name = "label1";
-            label1.Size = new Size(58, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Cantidad:";
             // 
             // colLado
             // 
@@ -257,6 +242,22 @@
             coltipo.Name = "coltipo";
             coltipo.ReadOnly = true;
             coltipo.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // txtCantidad
+            // 
+            txtCantidad.Location = new Point(101, 21);
+            txtCantidad.Name = "txtCantidad";
+            txtCantidad.Size = new Size(100, 23);
+            txtCantidad.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(28, 24);
+            label1.Name = "label1";
+            label1.Size = new Size(58, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Cantidad:";
             // 
             // frmPrincipal
             // 
