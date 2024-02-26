@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,20 +14,19 @@ namespace FinalProgramacion2023.Entidades
     {
         private int LadoA;
         private int LadoB;
-        
+
 
         private Borde borde;
 
 
         private Relleno relleno;
-        
+
 
 
         public Borde Borde { get { return borde; } set { borde = value; } }
         public Relleno Relleno { get { return relleno; } set { relleno = value; } }
 
-        public bool Cuadrado { get; set; }
-        public bool Rectangulo { get;  set; }
+
 
         public Cuadrilatero(int _medidaLadoA, int _medidaLadoB, Relleno relleno, Borde borde)
         {
@@ -33,44 +34,34 @@ namespace FinalProgramacion2023.Entidades
             LadoB = _medidaLadoB;
             Relleno = relleno;
             Borde = borde;
-           
         }
 
         public Cuadrilatero()
         {
         }
 
-        public object EsCuadrilatero()
-        {
-
-            if (LadoA > 0 && LadoB > 0)
-            {
-
-                return true;
 
 
 
-            }
-            else
-            {
-                return false;
-
-            }
-
-        }
-        
-
-        public bool TipoCuadrilatero()
+        public TipoDeCuadrilatero TipoCuadrilatero()
         {
             if (LadoA == LadoB)
             {
-                return Cuadrado;
-            }else
-            {
-                return Rectangulo;
+                return TipoDeCuadrilatero.Cuadrado;
             }
-
+            else
+            {
+                return TipoDeCuadrilatero.Rectangulo;
+            }
         }
+
+        public enum TipoDeCuadrilatero
+        {
+            Cuadrado,
+            Rectangulo
+        }
+
+
 
         public double GetPerimetro() => 2 * LadoA + 2 * LadoB;
         public double GetArea() => LadoA * LadoB;
@@ -95,7 +86,11 @@ namespace FinalProgramacion2023.Entidades
                 LadoB = medidaB;
             }
         }
+
+        
     }
+    
+    
 
 }  
 

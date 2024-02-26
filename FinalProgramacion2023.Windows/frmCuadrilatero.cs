@@ -18,7 +18,7 @@ namespace FinalProgramacion2023.Windows
             InitializeComponent();
         }
         private Cuadrilatero cuadrilatero;
-        List<Borde> listaBordes = Enum.GetValues(typeof(Borde)).Cast<Borde>().ToList();
+       
 
 
 
@@ -100,6 +100,7 @@ namespace FinalProgramacion2023.Windows
                 {
                     cuadrilatero.Borde = Borde.Lineal;
                 }
+                
 
                 DialogResult = DialogResult.OK;
             }

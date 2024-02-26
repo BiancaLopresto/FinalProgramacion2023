@@ -95,6 +95,7 @@
             // 
             // cboRelleno
             // 
+            cboRelleno.DropDownStyle = ComboBoxStyle.DropDownList;
             cboRelleno.FormattingEnabled = true;
             cboRelleno.Items.AddRange(new object[] { "Rojo", "Azul", "Verde" });
             cboRelleno.Location = new Point(101, 115);

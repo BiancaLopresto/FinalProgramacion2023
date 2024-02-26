@@ -27,11 +27,11 @@ namespace FinalProgramacion2023.Windows
 
         private void ActualizarcantidadRegistros()
         {
-           if (intValor > 0)
+            if (intValor > 0)
             {
-                txtCantidad.Text=repo.GetCantidad(intValor).ToString();
+                txtCantidad.Text = repo.GetCantidad(intValor).ToString();
             }
-           else
+            else
             {
                 txtCantidad.Text = repo.GetCantidad().ToString();
             }
@@ -41,26 +41,27 @@ namespace FinalProgramacion2023.Windows
         {
             frmCuadrilatero frm = new frmCuadrilatero() { Text = "Agregar Cuadrilatero" };
             DialogResult dr = frm.ShowDialog(this);
-            if (dr == DialogResult.Cancel )
+            if (dr == DialogResult.Cancel)
             {
 
                 return;
-            
+
             }
             Cuadrilatero cuadrilatero = frm.GetCuadrilatero();
             if (!repo.Existe(cuadrilatero))
             {
                 repo.Agregar(cuadrilatero);
-                txtCantidad.Text=repo.GetCantidad().ToString();
-                DataGridViewRow r= ConstruirFila();
+                txtCantidad.Text = repo.GetCantidad().ToString();
+                DataGridViewRow r = ConstruirFila();
                 SetearFila(r, cuadrilatero);
                 AgregarFila(r);
                 MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } else
-            {
-                MessageBox.Show("Registro Existente", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
+            else
+            {
+                MessageBox.Show("Registro Existente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void AgregarFila(DataGridViewRow r)
@@ -77,7 +78,6 @@ namespace FinalProgramacion2023.Windows
             r.Cells[colArea.Index].Value = cuadrilatero.GetArea();
             r.Cells[colPerimetro.Index].Value = cuadrilatero.GetPerimetro();
             r.Cells[coltipo.Index].Value = cuadrilatero.TipoCuadrilatero();
-
             r.Tag = cuadrilatero;
         }
 
@@ -91,6 +91,36 @@ namespace FinalProgramacion2023.Windows
         private void tsbSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void tsbBorrar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            DialogResult dr = MessageBox.Show("¿Desea dar de baja el cuadrado?",
+                "Confirmar Baja",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
+            if (dr == DialogResult.No) 
+            {
+
+                return;
+            
+            }
+            var filaseleccionada = dgvDatos.SelectedRows[0];
+            Cuadrilatero cuadrilatero = filaseleccionada.Tag as Cuadrilatero;
+            repo.Borrar(cuadrilatero);
+            txtCantidad.Text = repo.GetCantidad().ToString();
+            SacarFila(filaseleccionada);
+            MessageBox.Show("Regristo borrado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void SacarFila(DataGridViewRow r)
+        {
+            dgvDatos.Rows.Remove(r);
         }
     }
 }
