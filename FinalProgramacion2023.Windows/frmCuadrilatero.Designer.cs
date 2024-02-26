@@ -30,9 +30,9 @@
         {
             components = new System.ComponentModel.Container();
             gbxBordes = new GroupBox();
-            radioButton3 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
+            rbPuntos = new RadioButton();
+            rbRayas = new RadioButton();
+            rbLineal = new RadioButton();
             cboRelleno = new ComboBox();
             label4 = new Label();
             btnCancelar = new Button();
@@ -50,9 +50,9 @@
             // 
             // gbxBordes
             // 
-            gbxBordes.Controls.Add(radioButton3);
-            gbxBordes.Controls.Add(radioButton2);
-            gbxBordes.Controls.Add(radioButton1);
+            gbxBordes.Controls.Add(rbPuntos);
+            gbxBordes.Controls.Add(rbRayas);
+            gbxBordes.Controls.Add(rbLineal);
             gbxBordes.Location = new Point(41, 144);
             gbxBordes.Name = "gbxBordes";
             gbxBordes.Size = new Size(284, 76);
@@ -60,38 +60,38 @@
             gbxBordes.TabStop = false;
             gbxBordes.Text = " Bordes ";
             // 
-            // radioButton3
+            // rbPuntos
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(179, 34);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(62, 19);
-            radioButton3.TabIndex = 2;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "Puntos";
-            radioButton3.UseVisualStyleBackColor = true;
+            rbPuntos.AutoSize = true;
+            rbPuntos.Location = new Point(179, 34);
+            rbPuntos.Name = "rbPuntos";
+            rbPuntos.Size = new Size(62, 19);
+            rbPuntos.TabIndex = 2;
+            rbPuntos.TabStop = true;
+            rbPuntos.Text = "Puntos";
+            rbPuntos.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbRayas
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(98, 34);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(55, 19);
-            radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Rayas";
-            radioButton2.UseVisualStyleBackColor = true;
+            rbRayas.AutoSize = true;
+            rbRayas.Location = new Point(98, 34);
+            rbRayas.Name = "rbRayas";
+            rbRayas.Size = new Size(55, 19);
+            rbRayas.TabIndex = 1;
+            rbRayas.TabStop = true;
+            rbRayas.Text = "Rayas";
+            rbRayas.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rbLineal
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(19, 34);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(56, 19);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Lineal";
-            radioButton1.UseVisualStyleBackColor = true;
+            rbLineal.AutoSize = true;
+            rbLineal.Location = new Point(19, 34);
+            rbLineal.Name = "rbLineal";
+            rbLineal.Size = new Size(56, 19);
+            rbLineal.TabIndex = 0;
+            rbLineal.TabStop = true;
+            rbLineal.Text = "Lineal";
+            rbLineal.UseVisualStyleBackColor = true;
             // 
             // cboRelleno
             // 
@@ -209,8 +209,8 @@
         private Label label1;
         private ErrorProvider errorProvider1;
         private ErrorProvider errorProvider2;
-        private RadioButton radioButton1;
-        private RadioButton radioButton3;
-        private RadioButton radioButton2;
+        private RadioButton rbLineal;
+        private RadioButton rbPuntos;
+        private RadioButton rbRayas;
     }
 }

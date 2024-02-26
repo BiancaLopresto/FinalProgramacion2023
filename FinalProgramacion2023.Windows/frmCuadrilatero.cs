@@ -29,20 +29,25 @@ namespace FinalProgramacion2023.Windows
             if (cuadrilatero != null)
             {
                 txtLadoA.Text = cuadrilatero.GetLadoA().ToString();
-                txtLadoB.Text = cuadrilatero.GetLadoB().ToString();
+                txtLadoB.Text=cuadrilatero.GetLadoB().ToString();
                 cboRelleno.SelectedItem = cuadrilatero.Relleno;
-                SelectRadioButton(cuadrilatero.Borde);
-
+                if (cuadrilatero.Borde == Borde.Lineal)
+                {
+                    rbLineal.Checked = true;
+                }
+                else if (cuadrilatero.Borde == Borde.Rayas)
+                {
+                    rbRayas.Checked = true;
+                }
+                else
+                {
+                    rbPuntos.Checked = true;
+                }
             }
         }
 
 
-        private void SelectRadioButton(Borde borde)
-        {
-            var key = $"rbt{borde.ToString()}";
-            var rbt = (RadioButton)gbxBordes.Controls.Find(key, true)[0];
-            rbt.Checked = true;
-        }
+       
         private void CargarDatosRelleno()
         {
             var listaRelleno = Enum.GetValues(typeof(Relleno)).Cast<Relleno>().ToList();
@@ -84,7 +89,18 @@ namespace FinalProgramacion2023.Windows
                 cuadrilatero.SetLadoA(int.Parse(txtLadoA.Text));
                 cuadrilatero.SetLadoB(int.Parse(txtLadoB.Text));
                 cuadrilatero.Relleno = (Relleno)cboRelleno.SelectedItem;
-                cuadrilatero.Borde = cuadrilatero.Borde;
+                if (rbRayas.Checked)
+                {
+                    cuadrilatero.Borde = Borde.Rayas;
+
+                }else if (rbPuntos.Checked)
+                {
+                    cuadrilatero.Borde=Borde.Puntos;
+                }else
+                {
+                    cuadrilatero.Borde = Borde.Lineal;
+                }
+
                 DialogResult = DialogResult.OK;
             }
         }
