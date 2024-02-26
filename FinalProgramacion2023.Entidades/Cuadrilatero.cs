@@ -87,7 +87,10 @@ namespace FinalProgramacion2023.Entidades
             }
         }
 
-        
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
     
     

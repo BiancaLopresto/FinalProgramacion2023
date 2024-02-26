@@ -1,6 +1,7 @@
 ﻿using FinalProgramacion2023.Entidades;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
@@ -33,16 +34,19 @@ namespace FinalProgramacion2023.Datos
             if (File.Exists(_archivo))
             {
                 var lector = new StreamReader(_archivo);
+                while(!lector.EndOfStream)
               
                 {
                     string lineaLeida = lector.ReadLine();
                     Cuadrilatero cuadrilatero = ConstruirCuadrilatero(lineaLeida);
-                    if (cuadrilatero != null)
-                    {
-                        listaCuadrilateros.Add(cuadrilatero);
-                    }
+                    listaCuadrilateros.Add(cuadrilatero);
+
+
+                    
                 }
                 lector.Close();
+                
+                
             }
         }
 
@@ -91,35 +95,29 @@ namespace FinalProgramacion2023.Datos
         public void Agregar (Cuadrilatero cuadrilatero)
         {
 
-            using (var escritor = new StreamWriter(_archivo, true))
-            {
-                string lineaEscribir = ConstruirLinea(cuadrilatero);
-                escritor.WriteLine(lineaEscribir);
-                
-            }
-           listaCuadrilateros.Add(cuadrilatero);
-           
-           
+            var escritor = new StreamWriter(_archivo, true);
+
+            string lineaEscribir = ConstruirLinea(cuadrilatero);
+            escritor.WriteLine(lineaEscribir);
+            escritor.Close();
+            listaCuadrilateros.Add(cuadrilatero);
+
             
-
-
-        }
+       }
       
         
         private string ConstruirLinea(Cuadrilatero cuadrilatero)
         {
-           return $"{cuadrilatero.GetLadoA()}|{cuadrilatero.GetLadoB()}|{cuadrilatero.Relleno.GetHashCode()}|{cuadrilatero.Borde.GetHashCode()}|{cuadrilatero.TipoCuadrilatero}";
+           return $"{cuadrilatero.GetLadoA()}|{cuadrilatero.GetLadoB()}|{cuadrilatero.Relleno.GetHashCode()}|{cuadrilatero.Borde.GetHashCode()}|{cuadrilatero.TipoCuadrilatero()}";
         }
-        public object GetCantidad(int valorFiltro=0)
+        public int GetCantidad(int valorFiltro=0)
         {
             if (valorFiltro > 0)
             {
-                return listaCuadrilateros.Count(c => c.GetLadoA() >= valorFiltro);
-                
-                
-            } else if (valorFiltro > 0)
-            {
-                return listaCuadrilateros.Count(c => c.GetLadoB() >= valorFiltro);
+                return listaCuadrilateros.Count(c => c.GetLadoA() >= valorFiltro && 
+                c.GetLadoB()>=valorFiltro);
+
+
             }
             return listaCuadrilateros.Count;
         }

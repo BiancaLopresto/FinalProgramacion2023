@@ -23,6 +23,7 @@ namespace FinalProgramacion2023.Windows
             InitializeComponent();
             repo = new RepositorioCuadrilatero();
             ActualizarcantidadRegistros();
+            
         }
 
         private void ActualizarcantidadRegistros()
@@ -104,11 +105,11 @@ namespace FinalProgramacion2023.Windows
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2);
-            if (dr == DialogResult.No) 
+            if (dr == DialogResult.No)
             {
 
                 return;
-            
+
             }
             var filaseleccionada = dgvDatos.SelectedRows[0];
             Cuadrilatero cuadrilatero = filaseleccionada.Tag as Cuadrilatero;
@@ -121,6 +122,87 @@ namespace FinalProgramacion2023.Windows
         private void SacarFila(DataGridViewRow r)
         {
             dgvDatos.Rows.Remove(r);
+        }
+
+        private void tsbEditar_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            var filaSeleccionada = dgvDatos.SelectedRows[0];
+            Cuadrilatero cuadrilatero = (Cuadrilatero)filaSeleccionada.Tag;
+            Cuadrilatero cuadrilateroCopia = (Cuadrilatero)cuadrilatero.Clone();
+            frmCuadrilatero frm = new frmCuadrilatero() { Text = "Editar Cuadrado" };
+            frm.SetCuadrilatero(cuadrilatero);
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+            {
+
+                return;
+
+            }
+            cuadrilatero = frm.GetCuadrilatero();
+            if (!repo.Existe(cuadrilatero))
+            {
+                repo.Editar(cuadrilateroCopia, cuadrilatero);
+                SetearFila(filaSeleccionada, cuadrilatero);
+                MessageBox.Show("Registro editado", "Mensaje", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            }
+            else
+            {
+                SetearFila(filaSeleccionada, cuadrilateroCopia);
+                MessageBox.Show("Registro existente", "Error", MessageBoxButtons.OK,
+              MessageBoxIcon.Error);
+            }
+        }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            if (repo.GetCantidad() > 0)
+            {
+                lista = repo.GetLista();
+                MostrarDatosEnGrilla();
+            }
+        }
+
+        private void MostrarDatosEnGrilla()
+        {
+            dgvDatos.Rows.Clear();
+            foreach (var cuadrilatero in lista)
+            {
+                DataGridViewRow r = ConstruirFila();
+                SetearFila(r, cuadrilatero);
+                AgregarFila(r);
+            }
+        }
+
+        private void tsbFiltrar_Click(object sender, EventArgs e)
+        {
+            if (!filterOn)
+            {
+                var StringValor = Microsoft.VisualBasic.Interaction.InputBox("Ingrese el Valor del Lado a Filtrar", "Filtrar por Mayor o Igual", "0", 400, 400);
+                if(!int.TryParse(StringValor, out intValor))
+                {
+                    return;
+                }if (intValor <= 0)
+                {
+                    return;
+                }
+                lista = repo.Filtrar(intValor);
+                tsbFiltrar.BackColor = Color.Pink;
+                filterOn=true;
+                MostrarDatosEnGrilla();
+                ActualizarcantidadRegistros();
+            }else
+			{
+				MessageBox.Show("Filtro Aplicado!!!\nDebe actualizar la grilla",
+					"Advertencia",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Warning);
+			}
         }
     }
 }
