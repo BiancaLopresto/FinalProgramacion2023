@@ -17,13 +17,14 @@ namespace FinalProgramacion2023.Windows
         private RepositorioCuadrilatero repo;
         private List<Cuadrilatero> lista;
         int intValor;
+        int intArea;
         bool filterOn = false;
         public frmPrincipal()
         {
             InitializeComponent();
             repo = new RepositorioCuadrilatero();
             ActualizarcantidadRegistros();
-            
+
         }
 
         private void ActualizarcantidadRegistros()
@@ -181,28 +182,30 @@ namespace FinalProgramacion2023.Windows
 
         private void tsbFiltrar_Click(object sender, EventArgs e)
         {
-            if (!filterOn)
-            {
-                var StringValor = Microsoft.VisualBasic.Interaction.InputBox("Ingrese el Valor del Lado a Filtrar", "Filtrar por Mayor o Igual", "0", 400, 400);
-                if(!int.TryParse(StringValor, out intValor))
-                {
-                    return;
-                }if (intValor <= 0)
-                {
-                    return;
-                }
-                lista = repo.Filtrar(intValor);
-                tsbFiltrar.BackColor = Color.Pink;
-                filterOn=true;
-                MostrarDatosEnGrilla();
-                ActualizarcantidadRegistros();
-            }else
-			{
-				MessageBox.Show("Filtro Aplicado!!!\nDebe actualizar la grilla",
-					"Advertencia",
-					MessageBoxButtons.OK,
-					MessageBoxIcon.Warning);
-			}
+            
+        }
+
+        private void ordenarAscendenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lista = repo.OrdenarASC();
+            MostrarDatosEnGrilla();
+            ActualizarcantidadRegistros();
+        }
+
+        private void ordenarDescendenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lista = repo.OrdenarDESC();
+            MostrarDatosEnGrilla();
+            ActualizarcantidadRegistros();
+        }
+
+        private void tsbActualizar_Click(object sender, EventArgs e)
+        {
+
+           
+            lista = repo.GetLista();
+            MostrarDatosEnGrilla();
+            ActualizarcantidadRegistros();
         }
     }
 }

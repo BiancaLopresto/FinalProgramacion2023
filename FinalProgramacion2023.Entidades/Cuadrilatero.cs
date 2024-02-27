@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.Design;
 using System.Dynamic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -40,25 +41,43 @@ namespace FinalProgramacion2023.Entidades
         {
         }
 
-
+        public object NoesCuadrilatero()
+        {
+            if (LadoA > 0 && LadoB > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
 
         public TipoDeCuadrilatero TipoCuadrilatero()
         {
-            if (LadoA == LadoB)
-            {
-                return TipoDeCuadrilatero.Cuadrado;
-            }
-            else
-            {
-                return TipoDeCuadrilatero.Rectangulo;
-            }
+           
+                if (LadoA == LadoB)
+                {
+                    return TipoDeCuadrilatero.Cuadrado;
+                }
+                else
+                {
+                    return TipoDeCuadrilatero.Rectangulo;
+                }
+                
+
+            
+
         }
+
+        
 
         public enum TipoDeCuadrilatero
         {
             Cuadrado,
             Rectangulo
+           
         }
 
 

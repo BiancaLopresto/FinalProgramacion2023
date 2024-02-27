@@ -63,6 +63,16 @@ namespace FinalProgramacion2023.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Acendente_32px {
+            get {
+                object obj = ResourceManager.GetObject("Acendente_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cancel_24px {
             get {
                 object obj = ResourceManager.GetObject("cancel_24px", resourceCulture);
@@ -76,6 +86,16 @@ namespace FinalProgramacion2023.Windows.Properties {
         internal static System.Drawing.Bitmap delete_file_32px {
             get {
                 object obj = ResourceManager.GetObject("delete_file_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Descendente_32px {
+            get {
+                object obj = ResourceManager.GetObject("Descendente_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

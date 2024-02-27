@@ -36,7 +36,9 @@
             tsbFiltrar = new ToolStripButton();
             tsbActualizar = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
-            tsbOrdenar = new ToolStripButton();
+            tsbOrdenar = new ToolStripDropDownButton();
+            ordenarAscendenteToolStripMenuItem = new ToolStripMenuItem();
+            ordenarDescendenteToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator3 = new ToolStripSeparator();
             tsbSalir = new ToolStripButton();
             splitContainer1 = new SplitContainer();
@@ -125,6 +127,7 @@
             tsbActualizar.Size = new Size(63, 51);
             tsbActualizar.Text = "Actualizar";
             tsbActualizar.TextImageRelation = TextImageRelation.ImageAboveText;
+            tsbActualizar.Click += tsbActualizar_Click;
             // 
             // toolStripSeparator2
             // 
@@ -133,13 +136,31 @@
             // 
             // tsbOrdenar
             // 
+            tsbOrdenar.DropDownItems.AddRange(new ToolStripItem[] { ordenarAscendenteToolStripMenuItem, ordenarDescendenteToolStripMenuItem });
             tsbOrdenar.Image = Properties.Resources.sorting_arrows_32px;
             tsbOrdenar.ImageScaling = ToolStripItemImageScaling.None;
             tsbOrdenar.ImageTransparentColor = Color.Magenta;
             tsbOrdenar.Name = "tsbOrdenar";
-            tsbOrdenar.Size = new Size(54, 51);
+            tsbOrdenar.Size = new Size(63, 51);
             tsbOrdenar.Text = "Ordenar";
             tsbOrdenar.TextImageRelation = TextImageRelation.ImageAboveText;
+            // 
+            // ordenarAscendenteToolStripMenuItem
+            // 
+            ordenarAscendenteToolStripMenuItem.BackgroundImageLayout = ImageLayout.None;
+            ordenarAscendenteToolStripMenuItem.Image = Properties.Resources.Acendente_32px;
+            ordenarAscendenteToolStripMenuItem.Name = "ordenarAscendenteToolStripMenuItem";
+            ordenarAscendenteToolStripMenuItem.Size = new Size(188, 22);
+            ordenarAscendenteToolStripMenuItem.Text = "Ordenar Ascendente";
+            ordenarAscendenteToolStripMenuItem.Click += ordenarAscendenteToolStripMenuItem_Click;
+            // 
+            // ordenarDescendenteToolStripMenuItem
+            // 
+            ordenarDescendenteToolStripMenuItem.Image = Properties.Resources.Descendente_32px;
+            ordenarDescendenteToolStripMenuItem.Name = "ordenarDescendenteToolStripMenuItem";
+            ordenarDescendenteToolStripMenuItem.Size = new Size(188, 22);
+            ordenarDescendenteToolStripMenuItem.Text = "Ordenar Descendente";
+            ordenarDescendenteToolStripMenuItem.Click += ordenarDescendenteToolStripMenuItem_Click;
             // 
             // toolStripSeparator3
             // 
@@ -248,6 +269,7 @@
             // 
             // txtCantidad
             // 
+            txtCantidad.Enabled = false;
             txtCantidad.Location = new Point(101, 21);
             txtCantidad.Name = "txtCantidad";
             txtCantidad.Size = new Size(100, 23);
@@ -294,7 +316,6 @@
         private ToolStripButton tsbFiltrar;
         private ToolStripButton tsbActualizar;
         private ToolStripSeparator toolStripSeparator2;
-        private ToolStripButton tsbOrdenar;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripButton tsbSalir;
         private SplitContainer splitContainer1;
@@ -308,5 +329,8 @@
         private DataGridViewTextBoxColumn colArea;
         private DataGridViewTextBoxColumn colPerimetro;
         private DataGridViewTextBoxColumn coltipo;
+        private ToolStripDropDownButton tsbOrdenar;
+        private ToolStripMenuItem ordenarAscendenteToolStripMenuItem;
+        private ToolStripMenuItem ordenarDescendenteToolStripMenuItem;
     }
 }

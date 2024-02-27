@@ -149,16 +149,24 @@ namespace FinalProgramacion2023.Datos
 
 
 
-        public List<Cuadrilatero> Filtrar(int intValor)
+        public List<Cuadrilatero> Filtrar(int intArea)
         {
            
             
-          return listaCuadrilateros.Where(c => c.GetLadoA() >= intValor && c.GetLadoB() >=intValor).ToList();
+          return listaCuadrilateros.Where(c => c.GetLadoA() >= intArea && c.GetLadoB() >=intArea).ToList();
 
             
         }
 
+        public List<Cuadrilatero> OrdenarASC()
+        {
+            return listaCuadrilateros.OrderBy(c => c.GetLadoA()).ToList();
+        }
 
+        public List<Cuadrilatero>OrdenarDESC()
+        {
+            return listaCuadrilateros.OrderByDescending(c=> c.GetLadoA()).ToList();
+        }
 
         public bool Existe(Cuadrilatero cuadrilatero)
         {
