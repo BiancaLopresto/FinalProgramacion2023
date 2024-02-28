@@ -4,6 +4,6 @@
     {
         Rojo,
         Azul,
-        Verde,
+        Verde
     }
 }
